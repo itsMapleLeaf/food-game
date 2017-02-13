@@ -1,0 +1,20 @@
+{
+  "name": "breakfast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync start --server --files index.html out/**"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/pixi.js": "^4.3.1",
+    "typescript": "^2.1.6",
+    "browser-sync": "^2.18.7"
+  },
+  "dependencies": {
+    "pixi.js": "^4.3.5"
+  }
+}
