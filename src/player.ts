@@ -5,13 +5,13 @@ class Player {
 
   private speed = 10
 
-  constructor() {
+  constructor(x: number, y: number) {
     this.sprite.beginFill(0xffffff)
     this.sprite.drawCircle(0, 0, 50)
     this.sprite.endFill()
 
-    this.sprite.x = 100
-    this.sprite.y = 550
+    this.sprite.x = x
+    this.sprite.y = y
   }
 
   update(dt: number) {

@@ -14,12 +14,11 @@ function setup() {
     game.stage.addChild(fruit.sprite)
   }
 
-  let player = new Player()
+  let player = new Player(100, 550)
   game.stage.addChild(player.sprite)
 
   game.ticker.add(dt => {
     player.update(dt)
-
     fruits.forEach(fruit => {
       fruit.update(dt)
       fruit.bounceOffEdges(game.view.width, game.view.height)
@@ -30,6 +29,7 @@ function setup() {
     if (event.keyCode === KEY_LEFT) player.movingLeft = true
     if (event.keyCode === KEY_RIGHT) player.movingRight = true
   })
+
   window.addEventListener('keyup', event => {
     if (event.keyCode === KEY_LEFT) player.movingLeft = false
     if (event.keyCode === KEY_RIGHT) player.movingRight = false
