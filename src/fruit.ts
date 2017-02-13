@@ -17,19 +17,4 @@ class Fruit {
     this.sprite.y += this.yvel * dt
     this.sprite.rotation += this.xvel / 100 * dt
   }
-
-  bounceOffEdges(viewWidth: number, viewHeight: number) {
-    if (this.sprite.x - this.radius <= 0) {
-      this.sprite.x = 0 + this.radius
-      this.xvel = Math.abs(this.xvel)
-    }
-    if (this.sprite.x + this.radius >= viewWidth) {
-      this.sprite.x = viewWidth - this.radius
-      this.xvel = -Math.abs(this.xvel)
-    }
-    if (this.sprite.y + this.radius >= viewHeight) {
-      this.sprite.y = viewHeight - this.radius
-      this.yvel = -util.randomRange(10, 25)
-    }
-  }
 }

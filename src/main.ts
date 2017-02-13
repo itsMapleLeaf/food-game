@@ -7,22 +7,16 @@ function setup() {
   let game = new PIXI.Application()
   document.body.appendChild(game.view)
 
-  let fruits = [] as Fruit[]
-  for (let i = 0; i < 20; i++) {
-    let fruit = new Fruit()
-    fruits.push(fruit)
-    game.stage.addChild(fruit.sprite)
-  }
-
-  let player = new Player(100, 550)
+  let player = new Player(100, 300)
   game.stage.addChild(player.sprite)
+
+  // let fruits = [] as Fruit[]
 
   game.ticker.add(dt => {
     player.update(dt)
-    fruits.forEach(fruit => {
-      fruit.update(dt)
-      fruit.bounceOffEdges(game.view.width, game.view.height)
-    })
+    // fruits.forEach(fruit => {
+    //   fruit.update(dt)
+    // })
   })
 
   window.addEventListener('keydown', event => {
