@@ -4,24 +4,28 @@ const KEY_UP = 38
 const KEY_DOWN = 40
 
 function setup() {
-  let game = new PIXI.Application()
+  let game = new PIXI.Application(960, 540)
   document.body.appendChild(game.view)
 
-  let player = new Player(100, 300)
-  game.stage.addChild(player.sprite)
+  let background = game.stage.addChild(PIXI.Sprite.fromImage('resources/sky.png'))
+  background.width = game.view.width
+  background.height = game.view.height
 
-  // let fruits = [] as Fruit[]
+  // let player = new Player(100, 300)
+  // game.stage.addChild(player.sprite)
 
-  game.ticker.add(dt => {
-    player.movingLeft = Keyboard.isDown(KEY_LEFT)
-    player.movingRight = Keyboard.isDown(KEY_RIGHT)
-    player.update(dt)
-    // fruits.forEach(fruit => {
-    //   fruit.update(dt)
-    // })
-  })
+  // // let fruits = [] as Fruit[]
+
+  // game.ticker.add(dt => {
+  //   player.movingLeft = Keyboard.isDown(KEY_LEFT)
+  //   player.movingRight = Keyboard.isDown(KEY_RIGHT)
+  //   player.update(dt)
+  //   // fruits.forEach(fruit => {
+  //   //   fruit.update(dt)
+  //   // })
+  // })
 }
 
 PIXI.loader
-  .add('apple', 'resources/food/47.png')
+  .add('resources/sky.png')
   .load(setup)
