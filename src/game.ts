@@ -9,6 +9,30 @@ class Target {
   }
 }
 
+class TargetDisplay {
+  sprite = new PIXI.Container()
+
+  constructor(image: string) {
+    let text = new PIXI.Text('Touch:', {
+      fill: 'white',
+      stroke: 'black',
+      strokeThickness: 3,
+      fontSize: 40,
+    })
+    text.anchor.set(0, 0.5)
+
+    let imageSprite = PIXI.Sprite.fromImage(image)
+    imageSprite.anchor.set(0, 0.5)
+    imageSprite.position.set(text.width, 0)
+    imageSprite.scale.set(0.75)
+
+    this.sprite.addChild(text)
+    this.sprite.addChild(imageSprite)
+    this.sprite.pivot.set(this.sprite.width / 2, this.sprite.height / 2)
+    this.sprite.position.set(VIEW_WIDTH / 2, 100)
+  }
+}
+
 class Game {
   app = new PIXI.Application(VIEW_WIDTH, VIEW_HEIGHT)
   levelStage = new PIXI.Container()
@@ -32,35 +56,16 @@ class Game {
     this.level += 1
 
     let target = new Target()
-    let targetDisplay = this.createTargetDisplay(target.image)
+    let targetDisplay = new TargetDisplay(target.image)
 
     let level = this.levelStage
     level.removeChildren()
-    level.addChild(targetDisplay)
+    level.addChild(targetDisplay.sprite)
     level.addChild(target.sprite)
 
     target.sprite.interactive = true
     target.sprite.once('pointerdown', (event: PIXI.interaction.InteractionEvent) => {
       this.startNextLevel()
     })
-  }
-
-  createTargetDisplay(targetImage: string) {
-    let targetText = new PIXI.Text('Touch:', {
-      fill: 'white', stroke: 'black', strokeThickness: 3, fontSize: 40,
-    })
-    targetText.anchor.set(0, 0.5)
-
-    let targetSprite = PIXI.Sprite.fromImage(targetImage)
-    targetSprite.anchor.set(0, 0.5)
-    targetSprite.position.set(targetText.width, 0)
-    targetSprite.scale.set(0.75)
-
-    let targetDisplay = new PIXI.Container()
-    targetDisplay.addChild(targetText)
-    targetDisplay.addChild(targetSprite)
-    targetDisplay.pivot.set(targetDisplay.width / 2, targetDisplay.height / 2)
-    targetDisplay.position.set(VIEW_WIDTH / 2, 100)
-    return targetDisplay
   }
 }
