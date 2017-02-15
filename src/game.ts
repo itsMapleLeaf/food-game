@@ -38,6 +38,11 @@ class Game {
     level.removeChildren()
     level.addChild(targetDisplay)
     level.addChild(target.sprite)
+
+    target.sprite.interactive = true
+    target.sprite.once('pointerdown', (event: PIXI.interaction.InteractionEvent) => {
+      this.startNextLevel()
+    })
   }
 
   createTargetDisplay(targetImage: string) {
