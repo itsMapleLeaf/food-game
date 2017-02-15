@@ -46,18 +46,19 @@ class Game {
   }
 
   createTargetDisplay(targetImage: string) {
-    let targetDisplay = new PIXI.Container()
-    let targetText = targetDisplay.addChild(new PIXI.Text('Touch:', {
+    let targetText = new PIXI.Text('Touch:', {
       fill: 'white', stroke: 'black', strokeThickness: 3, fontSize: 40,
-    }))
-    let targetSprite = targetDisplay.addChild(PIXI.Sprite.fromImage(targetImage))
-
+    })
     targetText.anchor.set(0, 0.5)
 
+    let targetSprite = PIXI.Sprite.fromImage(targetImage)
     targetSprite.anchor.set(0, 0.5)
     targetSprite.position.set(targetText.width, 0)
     targetSprite.scale.set(0.75)
 
+    let targetDisplay = new PIXI.Container()
+    targetDisplay.addChild(targetText)
+    targetDisplay.addChild(targetSprite)
     targetDisplay.pivot.set(targetDisplay.width / 2, targetDisplay.height / 2)
     targetDisplay.position.set(VIEW_WIDTH / 2, 100)
     return targetDisplay
