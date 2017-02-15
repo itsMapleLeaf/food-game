@@ -14,6 +14,9 @@
         ],
         "object-literal-sort-keys": false,
         "curly": false,
-        "no-namespace": false
+        "no-namespace": false,
+        "member-access": [
+            false
+        ]
     }
 }
