@@ -47,7 +47,11 @@ function createTargetDisplay(targetImage: string) {
   return targetDisplay
 }
 
-PIXI.loader
+function load() {
+  PIXI.loader
   .add(FOOD_IMAGES)
   .add(BACKGROUND_IMAGE)
   .load(setup)
+}
+
+load()
