@@ -13,20 +13,12 @@ function setup() {
   // let fruits = [] as Fruit[]
 
   game.ticker.add(dt => {
+    player.movingLeft = Keyboard.isDown(KEY_LEFT)
+    player.movingRight = Keyboard.isDown(KEY_RIGHT)
     player.update(dt)
     // fruits.forEach(fruit => {
     //   fruit.update(dt)
     // })
-  })
-
-  window.addEventListener('keydown', event => {
-    if (event.keyCode === KEY_LEFT) player.movingLeft = true
-    if (event.keyCode === KEY_RIGHT) player.movingRight = true
-  })
-
-  window.addEventListener('keyup', event => {
-    if (event.keyCode === KEY_LEFT) player.movingLeft = false
-    if (event.keyCode === KEY_RIGHT) player.movingRight = false
   })
 }
 
