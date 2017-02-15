@@ -15,11 +15,6 @@ const FOOD_IMAGES = [
   'resources/tomato.png',
 ]
 
-const KEY_LEFT = 37
-const KEY_RIGHT = 39
-const KEY_UP = 38
-const KEY_DOWN = 40
-
 function setup() {
   let game = new PIXI.Application(VIEW_WIDTH, VIEW_HEIGHT)
   document.body.appendChild(game.view)
