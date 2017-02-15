@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "browser-sync start --server --files index.html out/**"
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "server": "browser-sync start --server --files index.html out/**",
+    "start": "run-p watch server"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +15,7 @@
   "devDependencies": {
     "@types/pixi.js": "^4.3.1",
     "browser-sync": "^2.18.7",
+    "npm-run-all": "^4.0.1",
     "tslint": "^4.4.2",
     "typescript": "^2.1.6"
   },
