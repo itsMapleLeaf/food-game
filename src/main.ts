@@ -28,18 +28,7 @@ function setup() {
   background.width = VIEW_WIDTH
   background.height = VIEW_HEIGHT
 
-  let targetDisplay = game.stage.addChild(new PIXI.Container())
-  let targetText = targetDisplay.addChild(new PIXI.Text('Touch:', { fill: 'white', stroke: 'black', strokeThickness: 3, fontSize: 40 }))
-  let targetSprite = targetDisplay.addChild(PIXI.Sprite.fromImage('resources/apple.png'))
-
-  targetText.anchor.set(0, 0.5)
-
-  targetSprite.anchor.set(0, 0.5)
-  targetSprite.position.set(targetText.width, 0)
-  targetSprite.scale.set(0.75)
-
-  targetDisplay.pivot.set(targetDisplay.width / 2, targetDisplay.height / 2)
-  targetDisplay.position.set(VIEW_WIDTH / 2, 100)
+  game.stage.addChild(new TargetDisplay().sprite)
 }
 
 PIXI.loader
