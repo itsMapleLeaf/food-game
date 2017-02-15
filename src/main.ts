@@ -28,7 +28,9 @@ function setup() {
 
 function createTargetDisplay(targetImage: string) {
   let targetDisplay = new PIXI.Container()
-  let targetText = targetDisplay.addChild(new PIXI.Text('Touch:', { fill: 'white', stroke: 'black', strokeThickness: 3, fontSize: 40 }))
+  let targetText = targetDisplay.addChild(new PIXI.Text('Touch:', {
+    fill: 'white', stroke: 'black', strokeThickness: 3, fontSize: 40,
+  }))
   let targetSprite = targetDisplay.addChild(PIXI.Sprite.fromImage(targetImage))
 
   targetText.anchor.set(0, 0.5)
