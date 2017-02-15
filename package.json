@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "server": "browser-sync start --server --files ./**/*.html ./**/*.css ./**/*.js",
+    "server": "browser-sync start --server --files *.html *.css out/**/*.js",
     "start": "run-p watch server"
   },
   "author": "just nobody",
