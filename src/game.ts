@@ -35,12 +35,20 @@ class TargetDisplay {
 
 class Game {
   app = new PIXI.Application(VIEW_WIDTH, VIEW_HEIGHT)
-  levelStage = new PIXI.Container()
-  targets = [] as PIXI.Sprite[]
   level = 0
+  levelStage = new PIXI.Container()
+  score = 0
+  scoreDisplay = new PIXI.Text('Score: 0', {
+    fill: 'white',
+    stroke: 'black',
+    strokeThickness: 3,
+    fontSize: 40,
+  })
+  targets = [] as Target[]
 
   start() {
-    document.body.appendChild(this.app.view)
+    this.scoreDisplay.anchor.set(0.5, 0.5)
+    this.scoreDisplay.position.set(VIEW_WIDTH / 2, VIEW_HEIGHT * 0.9)
 
     let background = PIXI.Sprite.fromImage('resources/sky.png')
     background.width = VIEW_WIDTH
@@ -48,6 +56,9 @@ class Game {
 
     this.app.stage.addChild(background)
     this.app.stage.addChild(this.levelStage)
+    this.app.stage.addChild(this.scoreDisplay)
+
+    document.body.appendChild(this.app.view)
 
     this.startNextLevel()
   }
@@ -65,6 +76,8 @@ class Game {
 
     target.sprite.interactive = true
     target.sprite.once('pointerdown', (event: PIXI.interaction.InteractionEvent) => {
+      this.score += 1
+      this.scoreDisplay.text = 'Score: ' + this.score.toString()
       this.startNextLevel()
     })
   }
