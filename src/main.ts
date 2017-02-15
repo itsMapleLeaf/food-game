@@ -2,7 +2,7 @@ const VIEW_WIDTH = 960
 const VIEW_HEIGHT = 540
 
 const BACKGROUND_IMAGE = 'resources/sky.png'
-const FRUIT_IMAGES = [
+const FOOD_IMAGES = [
   'resources/apple.png',
   'resources/banana.png',
   'resources/cake.png',
@@ -48,6 +48,6 @@ function createTargetDisplay(targetImage: string) {
 }
 
 PIXI.loader
-  .add(FRUIT_IMAGES)
+  .add(FOOD_IMAGES)
   .add(BACKGROUND_IMAGE)
   .load(setup)
