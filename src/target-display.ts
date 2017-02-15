@@ -15,4 +15,13 @@ class TargetDisplay {
     this.sprite.pivot.set(this.sprite.width / 2, this.sprite.height / 2)
     this.sprite.position.set(VIEW_WIDTH / 2, 100)
   }
+
+  setTargetImage(image: string) {
+    this.sprite.removeChild(this.image)
+    this.image = PIXI.Sprite.fromImage(image)
+    this.image.anchor.set(0, 0.5)
+    this.image.position.set(this.text.width, 0)
+    this.image.scale.set(0.75)
+    this.sprite.addChild(this.image)
+  }
 }

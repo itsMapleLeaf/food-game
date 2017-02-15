@@ -28,7 +28,16 @@ function setup() {
   background.width = VIEW_WIDTH
   background.height = VIEW_HEIGHT
 
-  game.stage.addChild(new TargetDisplay().sprite)
+  let targets = []
+  let targetDisplay = new TargetDisplay()
+
+  targets.push(new Target(util.randomItem(FRUIT_IMAGES)))
+
+  let target = util.randomItem(targets)
+  targetDisplay.setTargetImage(target.image)
+
+  game.stage.addChild(targetDisplay.sprite)
+  targets.forEach(t => game.stage.addChild(t.sprite))
 }
 
 PIXI.loader
