@@ -1,8 +1,11 @@
-class TargetDisplay {
-  sprite = new PIXI.Container()
+import * as pixi from 'pixi.js'
+import {VIEW_HEIGHT, VIEW_WIDTH} from './game'
+
+export default class TargetDisplay {
+  sprite = new pixi.Container()
 
   constructor(image: string) {
-    let text = new PIXI.Text('Touch:', {
+    let text = new pixi.Text('Touch:', {
       fill: 'white',
       stroke: 'black',
       strokeThickness: 3,
@@ -10,7 +13,7 @@ class TargetDisplay {
     })
     text.anchor.set(0, 0.5)
 
-    let imageSprite = PIXI.Sprite.fromImage(image)
+    let imageSprite = pixi.Sprite.fromImage(image)
     imageSprite.anchor.set(0, 0.5)
     imageSprite.position.set(text.width, 0)
     imageSprite.scale.set(0.75)

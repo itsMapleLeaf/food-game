@@ -1,5 +1,8 @@
-class ScoreDisplay {
-  sprite = new PIXI.Text('', {
+import * as pixi from 'pixi.js'
+import {VIEW_HEIGHT, VIEW_WIDTH} from './game'
+
+export default class ScoreDisplay {
+  sprite = new pixi.Text('', {
     fill: 'white',
     fontSize: 40,
     stroke: 'black',

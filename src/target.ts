@@ -1,6 +1,10 @@
-class Target {
+import * as pixi from 'pixi.js'
+import {FOOD_IMAGES, VIEW_HEIGHT, VIEW_WIDTH} from './game'
+import * as util from './util'
+
+export default class Target {
   image = util.randomItem(FOOD_IMAGES)
-  sprite = PIXI.Sprite.fromImage(this.image)
+  sprite = pixi.Sprite.fromImage(this.image)
 
   constructor() {
     this.sprite.position.set(VIEW_WIDTH / 2, VIEW_HEIGHT / 2)

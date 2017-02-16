@@ -1,26 +1,13 @@
-const VIEW_WIDTH = 960
-const VIEW_HEIGHT = 540
-
-const BACKGROUND_IMAGE = 'resources/sky.png'
-const FOOD_IMAGES = [
-  'resources/apple.png',
-  'resources/banana.png',
-  'resources/cake.png',
-  'resources/cherry.png',
-  'resources/grape.png',
-  'resources/jello.png',
-  'resources/lemon.png',
-  'resources/orange.png',
-  'resources/pear.png',
-  'resources/tomato.png',
-]
+import * as pixi from 'pixi.js'
+import Game, {BACKGROUND_IMAGE, FOOD_IMAGES} from './game'
+import './styles.css'
 
 function setup() {
   new Game().start()
 }
 
 function load() {
-  PIXI.loader
+  pixi.loader
   .add(FOOD_IMAGES)
   .add(BACKGROUND_IMAGE)
   .load(setup)
