@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "server": "browser-sync start --server --files *.html *.css out/**/*.js",
+    "build": "webpack -p",
+    "watch": "webpack -p --watch",
+    "server": "webpack-dev-server --inline --open",
     "start": "run-p watch server"
   },
   "author": "just nobody",
