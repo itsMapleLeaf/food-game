@@ -8,12 +8,14 @@ export default class Target {
 
   x = util.randomRange(0, game.VIEW_WIDTH)
   y = util.randomRange(0, game.VIEW_HEIGHT)
-  xvel = 8 * util.randomSign()
-  yvel = 8 * util.randomSign()
+  xvel = 0
+  yvel = 0
 
-  constructor() {
+  constructor(speed: number, size: number) {
+    this.xvel = speed * util.randomSign()
+    this.yvel = speed * util.randomSign()
+    this.sprite.scale.set(size)
     this.sprite.anchor.set(0.5, 0.5)
-    this.sprite.scale.set(1.2)
     this.update(0)
   }
 

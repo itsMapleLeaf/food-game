@@ -55,7 +55,7 @@ export default class Game {
     this.levelStage.removeChildren()
 
     for (let i = 0; i < this.level; i++) {
-      let target = new Target()
+      let target = new Target(2 + this.level * 0.5, 0.8 + 0.8 * (1 / this.level))
       this.targets.push(target)
       this.levelStage.addChild(target.sprite)
     }
