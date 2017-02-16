@@ -11,7 +11,7 @@ function drawOutlinedText(
 ) {
   ctx.save()
 
-  ctx.font = '55px Roboto'
+  ctx.font = '50px Roboto'
   ctx.textAlign = align
   ctx.textBaseline = baseline
 
@@ -53,8 +53,8 @@ export default class Gameplay {
     drawOutlinedText(ctx, 'Touch', game.VIEW_WIDTH / 2, 50, 'right')
 
     ctx.save()
-    ctx.translate(game.VIEW_WIDTH / 2, 50 - this.fruitTarget.height / 2 + 15)
-    ctx.scale(0.8, 0.8)
+    ctx.translate(game.VIEW_WIDTH / 2, 50 - this.fruitTarget.height / 2 + 20)
+    ctx.scale(0.7, 0.7)
     ctx.drawImage(this.fruitTarget, 0, 0)
     ctx.restore()
   }
