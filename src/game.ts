@@ -2,6 +2,7 @@ import * as pixi from 'pixi.js'
 import ScoreDisplay from './score-display'
 import Target from './target'
 import TargetDisplay from './target-display'
+import * as util from './util'
 
 export const VIEW_WIDTH = 960
 export const VIEW_HEIGHT = 540
@@ -50,22 +51,28 @@ export default class Game {
 
   startNextLevel() {
     this.level += 1
+    this.targets = []
+    this.levelStage.removeChildren()
 
-    let target = new Target()
-    let targetDisplay = new TargetDisplay(target.image)
-    let level = this.levelStage
+    for (let i = 0; i < this.level; i++) {
+      let target = new Target()
+      this.targets.push(target)
+      this.levelStage.addChild(target.sprite)
+    }
 
-    this.targets.push(target)
+    let chosenTarget = util.randomItem(this.targets)
+    let targetDisplay = new TargetDisplay(chosenTarget.image)
+    this.levelStage.addChild(targetDisplay.sprite)
 
-    level.removeChildren()
-    level.addChild(targetDisplay.sprite)
-    level.addChild(target.sprite)
-
-    target.sprite.interactive = true
-    target.sprite.once('pointerdown', (event: pixi.interaction.InteractionEvent) => {
-      this.score += 1
-      this.scoreDisplay.update(this.score)
-      this.startNextLevel()
+    this.targets.forEach(target => {
+      if (target.image === chosenTarget.image) {
+        target.sprite.interactive = true
+        target.sprite.once('pointerdown', (event: pixi.interaction.InteractionEvent) => {
+          this.score += 1
+          this.scoreDisplay.update(this.score)
+          this.startNextLevel()
+        })
+      }
     })
   }
 }
