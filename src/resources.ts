@@ -9,6 +9,7 @@ export function loadImage(src: string) {
   })
 }
 
+// this is lazy as hell don't do this
 export async function loadImages() {
   images['sky'] = await loadImage(require('./assets/images/sky.png'))
 
