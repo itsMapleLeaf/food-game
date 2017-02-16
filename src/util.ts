@@ -1,3 +1,16 @@
+export function loadImage(src: string) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    let image = new Image()
+    image.src = src
+    image.onload = event => resolve(image)
+    image.onerror = event => reject(event.error)
+  })
+}
+
+export function animationFrame() {
+  return new Promise<number>(window.requestAnimationFrame)
+}
+
 export function clamp(num: number, min: number, max: number) {
   if (num > max) return max
   if (num < min) return min

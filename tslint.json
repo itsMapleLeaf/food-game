@@ -22,6 +22,8 @@
             false
         ],
         "no-var-requires": false,
-        "arrow-parens": false
+        "arrow-parens": false,
+        "no-unused-variable": true,
+        "no-string-literal": false
     }
 }
