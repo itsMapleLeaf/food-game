@@ -21,8 +21,8 @@ export default class Game {
 
     canvas.addEventListener('pointerdown', (event: PointerEvent) => {
       let {width, height} = canvas.getBoundingClientRect()
-      let x = event.clientX / width * VIEW_WIDTH
-      let y = event.clientY / height * VIEW_HEIGHT
+      let x = event.offsetX / width * VIEW_WIDTH
+      let y = event.offsetY / height * VIEW_HEIGHT
       this.state.pointerdown(x, y)
     })
 
