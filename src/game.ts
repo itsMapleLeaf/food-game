@@ -6,19 +6,19 @@ import TargetDisplay from './target-display'
 export const VIEW_WIDTH = 960
 export const VIEW_HEIGHT = 540
 
-export const BACKGROUND_IMAGE = 'resources/sky.png'
+export const BACKGROUND_IMAGE = require('./resources/sky.png') as string
 export const FOOD_IMAGES = [
-  'resources/apple.png',
-  'resources/banana.png',
-  'resources/cake.png',
-  'resources/cherry.png',
-  'resources/grape.png',
-  'resources/jello.png',
-  'resources/lemon.png',
-  'resources/orange.png',
-  'resources/pear.png',
-  'resources/tomato.png',
-]
+  require('./resources/apple.png'),
+  require('./resources/banana.png'),
+  require('./resources/cake.png'),
+  require('./resources/cherry.png'),
+  require('./resources/grape.png'),
+  require('./resources/jello.png'),
+  require('./resources/lemon.png'),
+  require('./resources/orange.png'),
+  require('./resources/pear.png'),
+  require('./resources/tomato.png'),
+] as string[]
 
 export default class Game {
   app = new pixi.Application(VIEW_WIDTH, VIEW_HEIGHT)
@@ -29,7 +29,7 @@ export default class Game {
   targets = [] as Target[]
 
   start() {
-    let background = pixi.Sprite.fromImage('resources/sky.png')
+    let background = pixi.Sprite.fromImage(BACKGROUND_IMAGE)
     background.width = VIEW_WIDTH
     background.height = VIEW_HEIGHT
 

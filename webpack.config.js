@@ -14,6 +14,7 @@ module.exports = function (env = {}) {
       rules: [
         { test: /\.ts$/, loader: 'ts-loader' },
         { test: /\.css$/, loader: 'style-loader!css-loader' },
+        { test: /\.png$/, loader: 'file-loader' },
       ]
     },
     resolve: {
