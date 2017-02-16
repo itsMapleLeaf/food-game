@@ -21,7 +21,7 @@ module.exports = function (env = {}) {
       extensions: ['.ts', '.js']
     },
     plugins: [
-      new HTMLPlugin({ template: './src/assets/index.html' })
+      new HTMLPlugin({ template: './assets/index.html' })
     ]
   }
 
