@@ -1,4 +1,5 @@
 import {images} from './resources'
+import * as resources from './resources'
 import * as util from './util'
 
 export const VIEW_WIDTH = 960
@@ -86,22 +87,40 @@ export default class Game {
   fruitTarget: HTMLImageElement
   level = 0
 
-  constructor() {
-    this.nextLevel()
+  async start() {
+    await resources.loadImages()
+
+    let canvas = document.createElement('canvas')
+    canvas.width = VIEW_WIDTH
+    canvas.height = VIEW_HEIGHT
+    document.body.appendChild(canvas)
+
+    let ctx = canvas.getContext('2d')
+    let time = Date.now()
+
+    canvas.addEventListener('pointerdown', (event: PointerEvent) => {
+      let {width, height} = canvas.getBoundingClientRect()
+      let x = event.clientX / width * VIEW_WIDTH
+      let y = event.clientY / height * VIEW_HEIGHT
+      this.pointerdown(x, y)
+    })
+
+    this.init()
+
+    while (true) {
+      await util.animationFrame()
+
+      let now = Date.now()
+      let elapsed = now - time
+      time = now
+
+      this.update(elapsed / 1000)
+      this.draw(ctx)
+    }
   }
 
-  nextLevel() {
-    this.level += 1
-    this.fruits = []
-
-    for (let i = 0; i < this.level; i++) {
-      this.fruits.push(new Fruit(0.8 + 0.8 * (1 / this.level), 100 + this.level * 20))
-    }
-
-    this.fruitTarget = util.randomItem(this.fruits).image
-    this.fruits
-      .filter(fruit => fruit.image === this.fruitTarget)
-      .forEach(fruit => fruit.isGood = true)
+  init() {
+    this.nextLevel()
   }
 
   update(dt: number) {
@@ -120,7 +139,7 @@ export default class Game {
     this.fruits.forEach(fruit => fruit.draw(ctx))
 
     // ui
-    drawOutlinedText(ctx, 'Touch:', VIEW_WIDTH / 2, 50, 'right')
+    drawOutlinedText(ctx, 'Touch', VIEW_WIDTH / 2, 50, 'right')
 
     ctx.save()
     ctx.translate(VIEW_WIDTH / 2, 50 - this.fruitTarget.height / 2 + 15)
@@ -137,5 +156,19 @@ export default class Game {
         break
       }
     }
+  }
+
+  nextLevel() {
+    this.level += 1
+    this.fruits = []
+
+    for (let i = 0; i < this.level; i++) {
+      this.fruits.push(new Fruit(0.8 + 0.8 * (1 / this.level), 100 + this.level * 20))
+    }
+
+    this.fruitTarget = util.randomItem(this.fruits).image
+    this.fruits
+      .filter(fruit => fruit.image === this.fruitTarget)
+      .forEach(fruit => fruit.isGood = true)
   }
 }
