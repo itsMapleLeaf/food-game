@@ -8,6 +8,12 @@ export function lerp(a: number, b: number, delta: number) {
   return a + (b - a) * clamp(delta, 0, 1)
 }
 
+export function sign(n: number) {
+  if (n < 0) return -1
+  if (n > 0) return 1
+  return 0
+}
+
 export function randomRange(min: number, max: number) {
   return Math.random() * (max - min) + min
 }

@@ -39,7 +39,13 @@ export default class Game {
 
     document.body.appendChild(this.app.view)
 
+    this.app.ticker.add(dt => this.update(dt))
+
     this.startNextLevel()
+  }
+
+  update(dt: number) {
+    this.targets.forEach(t => t.update(dt))
   }
 
   startNextLevel() {
@@ -47,8 +53,10 @@ export default class Game {
 
     let target = new Target()
     let targetDisplay = new TargetDisplay(target.image)
-
     let level = this.levelStage
+
+    this.targets.push(target)
+
     level.removeChildren()
     level.addChild(targetDisplay.sprite)
     level.addChild(target.sprite)
