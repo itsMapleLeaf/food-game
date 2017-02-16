@@ -12,7 +12,6 @@
   "author": "just nobody",
   "license": "MIT",
   "devDependencies": {
-    "@types/pixi.js": "^4.3.1",
     "@types/webpack": "^2.2.6",
     "css-loader": "^0.26.1",
     "file-loader": "^0.10.0",
@@ -24,8 +23,5 @@
     "typescript": "^2.1.6",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
-  },
-  "dependencies": {
-    "pixi.js": "^4.3.5"
   }
 }
