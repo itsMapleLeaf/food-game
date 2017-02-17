@@ -39,13 +39,16 @@ export default class Gameplay implements game.GameState {
   }
 
   pointerdown(x: number, y: number) {
-    for (const fruit of this.fruits) {
-      if (fruit.x < x && x < fruit.x + fruit.width && fruit.y < y && y < fruit.y + fruit.height
-      && fruit.isGood) {
-        this.score += 1
-        this.startLevel(this.level += 1)
-        break
-      }
+    let tapped = this.fruits.filter(fruit =>
+      fruit.x < x && x < fruit.x + fruit.width &&
+      fruit.y < y && y < fruit.y + fruit.height)
+
+    if (tapped.some(fruit => fruit.isGood)) {
+      this.score += 1
+      this.startLevel(this.level += 1)
+    } else {
+      this.score = 0
+      this.startLevel(this.level = 1)
     }
   }
 
