@@ -24,6 +24,7 @@ export default class Gameplay implements game.GameState {
   fruits = [] as Fruit[]
   fruitTarget: HTMLImageElement
   level = 0
+  score = 0
 
   init() {
     this.nextLevel()
@@ -38,6 +39,7 @@ export default class Gameplay implements game.GameState {
     for (const fruit of this.fruits) {
       if (fruit.x < x && x < fruit.x + fruit.width && fruit.y < y && y < fruit.y + fruit.height
       && fruit.isGood) {
+        this.score += 1
         this.nextLevel()
         break
       }
@@ -62,6 +64,7 @@ export default class Gameplay implements game.GameState {
     this.drawBackground(ctx)
     this.fruits.forEach(fruit => fruit.draw(ctx))
     this.drawFruitTarget(ctx)
+    this.drawScore(ctx)
   }
 
   drawBackground(ctx: CanvasRenderingContext2D) {
@@ -82,5 +85,12 @@ export default class Gameplay implements game.GameState {
     ctx.scale(0.7, 0.7)
     ctx.drawImage(this.fruitTarget, 0, 0)
     ctx.restore()
+  }
+
+  drawScore(ctx: CanvasRenderingContext2D) {
+    ctx.font = '50px Roboto'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    drawOutlinedText(ctx, `Score: ${this.score}`, game.VIEW_WIDTH / 2, game.VIEW_HEIGHT * 0.9)
   }
 }
