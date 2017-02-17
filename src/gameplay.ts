@@ -28,7 +28,8 @@ export default class Gameplay implements game.GameState {
   targetBlinkTime = 0
 
   init() {
-    this.nextLevel()
+    this.targetBlinkTime = 0.8
+    this.startLevel(this.level += 1)
   }
 
   update(dt: number) {
@@ -42,26 +43,23 @@ export default class Gameplay implements game.GameState {
       if (fruit.x < x && x < fruit.x + fruit.width && fruit.y < y && y < fruit.y + fruit.height
       && fruit.isGood) {
         this.score += 1
-        this.nextLevel()
+        this.startLevel(this.level += 1)
         break
       }
     }
   }
 
-  nextLevel() {
-    this.level += 1
+  startLevel(level: number) {
     this.fruits = []
 
-    for (let i = 0; i < this.level; i++) {
-      this.fruits.push(new Fruit(0.8 + 0.8 * (1 / this.level), 100 + this.level * 20))
+    for (let i = 0; i < level; i++) {
+      this.fruits.push(new Fruit(0.8 + 0.8 * (1 / level), 100 + level * 20))
     }
 
     this.fruitTargetImage = util.randomItem(this.fruits).image
     this.fruits
       .filter(fruit => fruit.image === this.fruitTargetImage)
       .forEach(fruit => fruit.isGood = true)
-
-    if (this.level === 1) this.targetBlinkTime = 0.8
   }
 
   draw(ctx: CanvasRenderingContext2D) {
