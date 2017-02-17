@@ -21,10 +21,11 @@ function drawOutlinedText(
 }
 
 export default class Gameplay implements game.GameState {
-  fruits = [] as Fruit[]
   fruitTarget: HTMLImageElement
+  fruits = [] as Fruit[]
   level = 0
   score = 0
+  targetBlinkTime = 0
 
   init() {
     this.nextLevel()
@@ -33,6 +34,7 @@ export default class Gameplay implements game.GameState {
   update(dt: number) {
     if (dt > 0.5) return
     this.fruits.forEach(fruit => fruit.update(dt))
+    this.targetBlinkTime -= dt
   }
 
   pointerdown(x: number, y: number) {
@@ -58,6 +60,8 @@ export default class Gameplay implements game.GameState {
     this.fruits
       .filter(fruit => fruit.image === this.fruitTarget)
       .forEach(fruit => fruit.isGood = true)
+
+    if (this.level === 1) this.targetBlinkTime = 0.8
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -75,6 +79,8 @@ export default class Gameplay implements game.GameState {
   }
 
   drawFruitTarget(ctx: CanvasRenderingContext2D) {
+    if (this.targetBlinkTime > 0 && Math.sin(this.targetBlinkTime * 20) < 0) return
+
     ctx.font = '50px Roboto'
     ctx.textAlign = 'right'
     ctx.textBaseline = 'middle'
