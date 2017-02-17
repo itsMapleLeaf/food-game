@@ -7,13 +7,8 @@ function drawOutlinedText(
   ctx: CanvasRenderingContext2D,
   text: string,
   x: number, y: number,
-  align = 'center', baseline = 'middle',
 ) {
   ctx.save()
-
-  ctx.font = '50px Roboto'
-  ctx.textAlign = align
-  ctx.textBaseline = baseline
 
   ctx.lineWidth = 5
   ctx.strokeStyle = 'black'
@@ -50,7 +45,10 @@ export default class Gameplay implements game.GameState {
     this.fruits.forEach(fruit => fruit.draw(ctx))
 
     // ui
-    drawOutlinedText(ctx, 'Touch', game.VIEW_WIDTH / 2, 50, 'right')
+    ctx.font = '50px Roboto'
+    ctx.textAlign = 'right'
+    ctx.textBaseline = 'middle'
+    drawOutlinedText(ctx, 'Touch', game.VIEW_WIDTH / 2, 50)
 
     ctx.save()
     ctx.translate(game.VIEW_WIDTH / 2, 50 - this.fruitTarget.height / 2 + 20)
