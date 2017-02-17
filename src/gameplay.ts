@@ -29,7 +29,7 @@ export default class Gameplay implements game.GameState {
 
   init() {
     this.targetBlinkTime = 0.8
-    this.startLevel(this.level += 1)
+    this.startLevel(this.level + 1)
   }
 
   update(dt: number) {
@@ -45,15 +45,16 @@ export default class Gameplay implements game.GameState {
 
     if (tapped.some(fruit => fruit.isGood)) {
       this.score += 1
-      this.startLevel(this.level += 1)
+      this.startLevel(this.level + 1)
     } else {
       this.score = 0
-      this.startLevel(this.level = 1)
+      this.startLevel(1)
     }
   }
 
   startLevel(level: number) {
     this.fruits = []
+    this.level = level
 
     for (let i = 0; i < level; i++) {
       this.fruits.push(new Fruit(0.8 + 0.8 * (1 / level), 100 + level * 20))
@@ -82,12 +83,11 @@ export default class Gameplay implements game.GameState {
   drawFruitTarget(ctx: CanvasRenderingContext2D) {
     if (this.targetBlinkTime > 0 && Math.sin(this.targetBlinkTime * 20) < 0) return
 
-    let prefixText = 'Touch'
-
     ctx.font = '50px Roboto'
     ctx.textAlign = 'left'
     ctx.textBaseline = 'middle'
 
+    let prefixText = 'Touch'
     let textWidth = ctx.measureText(prefixText).width
     let textPosition = game.VIEW_WIDTH / 2 - textWidth / 2 - this.fruitTargetImage.width / 2
 
