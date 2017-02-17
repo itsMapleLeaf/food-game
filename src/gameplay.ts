@@ -35,16 +35,19 @@ export default class Gameplay implements game.GameState {
   }
 
   draw(ctx: CanvasRenderingContext2D) {
-    // background
+    this.drawBackground(ctx)
+    this.fruits.forEach(fruit => fruit.draw(ctx))
+    this.drawFruitTarget(ctx)
+  }
+
+  drawBackground(ctx: CanvasRenderingContext2D) {
     ctx.save()
     ctx.scale(game.VIEW_WIDTH / images['sky'].width, game.VIEW_HEIGHT / images['sky'].height)
     ctx.drawImage(images['sky'], 0, 0)
     ctx.restore()
+  }
 
-    // fruits
-    this.fruits.forEach(fruit => fruit.draw(ctx))
-
-    // ui
+  drawFruitTarget(ctx: CanvasRenderingContext2D) {
     ctx.font = '50px Roboto'
     ctx.textAlign = 'right'
     ctx.textBaseline = 'middle'
