@@ -25,7 +25,7 @@ function drawOutlinedText(
   ctx.restore()
 }
 
-export default class Gameplay {
+export default class Gameplay implements game.GameState {
   fruits = [] as Fruit[]
   fruitTarget: HTMLImageElement
   level = 0

@@ -1,14 +1,22 @@
-import Gameplay from './gameplay'
 import * as resources from './resources'
 import * as util from './util'
 
 export const VIEW_WIDTH = 960
 export const VIEW_HEIGHT = 540
 
-export default class Game {
-  state = new Gameplay()
+export interface GameState {
+  init(): void
+  update(dt: number): void
+  draw(ctx: CanvasRenderingContext2D): void
+  pointerdown(x: number, y: number): void
+}
 
-  async start() {
+export default class Game {
+  state: GameState
+
+  async start(state: GameState) {
+    this.state = state
+
     await resources.loadImages()
 
     let canvas = document.createElement('canvas')
