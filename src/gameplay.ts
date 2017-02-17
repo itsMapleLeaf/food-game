@@ -34,6 +34,30 @@ export default class Gameplay implements game.GameState {
     this.fruits.forEach(fruit => fruit.update(dt))
   }
 
+  pointerdown(x: number, y: number) {
+    for (const fruit of this.fruits) {
+      if (fruit.x < x && x < fruit.x + fruit.width && fruit.y < y && y < fruit.y + fruit.height
+      && fruit.isGood) {
+        this.nextLevel()
+        break
+      }
+    }
+  }
+
+  nextLevel() {
+    this.level += 1
+    this.fruits = []
+
+    for (let i = 0; i < this.level; i++) {
+      this.fruits.push(new Fruit(0.8 + 0.8 * (1 / this.level), 100 + this.level * 20))
+    }
+
+    this.fruitTarget = util.randomItem(this.fruits).image
+    this.fruits
+      .filter(fruit => fruit.image === this.fruitTarget)
+      .forEach(fruit => fruit.isGood = true)
+  }
+
   draw(ctx: CanvasRenderingContext2D) {
     this.drawBackground(ctx)
     this.fruits.forEach(fruit => fruit.draw(ctx))
@@ -58,29 +82,5 @@ export default class Gameplay implements game.GameState {
     ctx.scale(0.7, 0.7)
     ctx.drawImage(this.fruitTarget, 0, 0)
     ctx.restore()
-  }
-
-  pointerdown(x: number, y: number) {
-    for (const fruit of this.fruits) {
-      if (fruit.x < x && x < fruit.x + fruit.width && fruit.y < y && y < fruit.y + fruit.height
-      && fruit.isGood) {
-        this.nextLevel()
-        break
-      }
-    }
-  }
-
-  nextLevel() {
-    this.level += 1
-    this.fruits = []
-
-    for (let i = 0; i < this.level; i++) {
-      this.fruits.push(new Fruit(0.8 + 0.8 * (1 / this.level), 100 + this.level * 20))
-    }
-
-    this.fruitTarget = util.randomItem(this.fruits).image
-    this.fruits
-      .filter(fruit => fruit.image === this.fruitTarget)
-      .forEach(fruit => fruit.isGood = true)
   }
 }
