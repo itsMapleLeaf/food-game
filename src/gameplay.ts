@@ -21,7 +21,7 @@ function drawOutlinedText(
 }
 
 export default class Gameplay implements game.GameState {
-  fruitTarget: HTMLImageElement
+  fruitTargetImage: HTMLImageElement
   fruits = [] as Fruit[]
   level = 0
   score = 0
@@ -56,9 +56,9 @@ export default class Gameplay implements game.GameState {
       this.fruits.push(new Fruit(0.8 + 0.8 * (1 / this.level), 100 + this.level * 20))
     }
 
-    this.fruitTarget = util.randomItem(this.fruits).image
+    this.fruitTargetImage = util.randomItem(this.fruits).image
     this.fruits
-      .filter(fruit => fruit.image === this.fruitTarget)
+      .filter(fruit => fruit.image === this.fruitTargetImage)
       .forEach(fruit => fruit.isGood = true)
 
     if (this.level === 1) this.targetBlinkTime = 0.8
@@ -81,15 +81,21 @@ export default class Gameplay implements game.GameState {
   drawFruitTarget(ctx: CanvasRenderingContext2D) {
     if (this.targetBlinkTime > 0 && Math.sin(this.targetBlinkTime * 20) < 0) return
 
+    let prefixText = 'Touch'
+
     ctx.font = '50px Roboto'
-    ctx.textAlign = 'right'
+    ctx.textAlign = 'left'
     ctx.textBaseline = 'middle'
-    drawOutlinedText(ctx, 'Touch', game.VIEW_WIDTH / 2, 50)
+
+    let textWidth = ctx.measureText(prefixText).width
+    let textPosition = game.VIEW_WIDTH / 2 - textWidth / 2 - this.fruitTargetImage.width / 2
+
+    drawOutlinedText(ctx, prefixText, textPosition, 50)
 
     ctx.save()
-    ctx.translate(game.VIEW_WIDTH / 2, 50 - this.fruitTarget.height / 2 + 20)
+    ctx.translate(textPosition + textWidth, 50 - this.fruitTargetImage.height / 2 + 20)
     ctx.scale(0.7, 0.7)
-    ctx.drawImage(this.fruitTarget, 0, 0)
+    ctx.drawImage(this.fruitTargetImage, 0, 0)
     ctx.restore()
   }
 
