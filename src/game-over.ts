@@ -1,4 +1,5 @@
-import {GameState, viewHeight, viewWidth} from './game'
+import {game, GameState, viewHeight, viewWidth} from './game'
+import Gameplay from './gameplay'
 import {drawOutlinedText} from './graphics'
 import {images} from './resources'
 
@@ -24,5 +25,7 @@ export class GameOver implements GameState {
     drawOutlinedText(ctx, 'Tap to try again', viewWidth / 2, viewHeight / 2 + 140, 3)
   }
 
-  pointerdown() {}
+  pointerdown() {
+    game.switchState(new Gameplay())
+  }
 }
