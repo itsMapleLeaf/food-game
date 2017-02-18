@@ -25,6 +25,7 @@
         "arrow-parens": false,
         "no-unused-variable": true,
         "no-string-literal": false,
-        "interface-name": false
+        "interface-name": [false],
+        "no-empty": false
     }
 }
