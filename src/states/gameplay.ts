@@ -29,9 +29,7 @@ export class Gameplay implements GameState {
   }
 
   pointerdown(x: number, y: number) {
-    let tapped = this.fruits.filter(fruit =>
-      fruit.x < x && x < fruit.x + fruit.width &&
-      fruit.y < y && y < fruit.y + fruit.height)
+    let tapped = this.fruits.filter(fruit => fruit.containsPoint(x, y))
 
     if (tapped.some(fruit => fruit.image === this.fruitTargetImage)) {
       this.score += 1

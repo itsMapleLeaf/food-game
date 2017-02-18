@@ -20,11 +20,11 @@ function getRandomFruit() {
 export class Fruit {
   public blinking = false
   public image = getRandomFruit()
-  public width = this.image.width
-  public height = this.image.height
-  public x = randomRange(0, game.viewWidth - this.width)
-  public y = randomRange(0, game.viewHeight - this.height)
 
+  private width = this.image.width
+  private height = this.image.height
+  private x = randomRange(0, game.viewWidth - this.width)
+  private y = randomRange(0, game.viewHeight - this.height)
   private xvel = 0
   private yvel = 0
   private blinkTime = 0
@@ -61,5 +61,10 @@ export class Fruit {
   draw(ctx: CanvasRenderingContext2D) {
     if (this.blinking && Math.floor(this.blinkTime * 10) % 2 === 0) return
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+  }
+
+  containsPoint(x: number, y: number) {
+    return this.x < x && x < this.x + this.width
+        && this.y < y && y < this.y + this.height
   }
 }
