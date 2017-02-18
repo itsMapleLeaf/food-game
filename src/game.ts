@@ -1,8 +1,8 @@
 import * as resources from './resources'
 import * as util from './util'
 
-export const VIEW_WIDTH = 960
-export const VIEW_HEIGHT = 540
+export const viewWidth = 960
+export const viewHeight = 540
 
 export interface GameState {
   enter(): void
@@ -21,14 +21,14 @@ export class Game {
     this.switchState(state)
 
     let canvas = document.createElement('canvas')
-    canvas.width = VIEW_WIDTH
-    canvas.height = VIEW_HEIGHT
+    canvas.width = viewWidth
+    canvas.height = viewHeight
     document.body.appendChild(canvas)
 
     canvas.addEventListener('pointerdown', event => {
       let {width, height} = canvas.getBoundingClientRect()
-      let x = event.offsetX / width * VIEW_WIDTH
-      let y = event.offsetY / height * VIEW_HEIGHT
+      let x = event.offsetX / width * viewWidth
+      let y = event.offsetY / height * viewHeight
       this.state.pointerdown(x, y)
     })
 

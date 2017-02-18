@@ -1,5 +1,5 @@
 import Fruit from './fruit'
-import { game, GameState, VIEW_HEIGHT, VIEW_WIDTH } from './game'
+import { game, GameState, viewHeight, viewWidth } from './game'
 import { GameOver } from './game-over'
 import { images } from './resources'
 import * as util from './util'
@@ -77,7 +77,7 @@ export default class Gameplay implements GameState {
   }
 
   drawBackground(ctx: CanvasRenderingContext2D) {
-    ctx.drawImage(images['sky'], 0, 0, VIEW_WIDTH, VIEW_HEIGHT)
+    ctx.drawImage(images['sky'], 0, 0, viewWidth, viewHeight)
   }
 
   drawFruitTarget(ctx: CanvasRenderingContext2D) {
@@ -89,7 +89,7 @@ export default class Gameplay implements GameState {
 
     let prefixText = 'Touch'
     let textWidth = ctx.measureText(prefixText).width
-    let textPosition = VIEW_WIDTH / 2 - textWidth / 2 - this.fruitTargetImage.width / 2
+    let textPosition = viewWidth / 2 - textWidth / 2 - this.fruitTargetImage.width / 2
 
     drawOutlinedText(ctx, prefixText, textPosition, 50)
 
@@ -104,6 +104,6 @@ export default class Gameplay implements GameState {
     ctx.font = '50px Roboto'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    drawOutlinedText(ctx, `Score: ${this.score}`, VIEW_WIDTH / 2, VIEW_HEIGHT * 0.9)
+    drawOutlinedText(ctx, `Score: ${this.score}`, viewWidth / 2, viewHeight * 0.9)
   }
 }

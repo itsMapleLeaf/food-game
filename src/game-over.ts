@@ -1,4 +1,4 @@
-import { GameState, VIEW_HEIGHT, VIEW_WIDTH } from './game'
+import { GameState, viewHeight, viewWidth } from './game'
 import { images } from './resources'
 
 export class GameOver implements GameState {
@@ -9,7 +9,7 @@ export class GameOver implements GameState {
   update() {}
 
   draw(ctx: CanvasRenderingContext2D) {
-    ctx.drawImage(images['sky'], 0, 0, VIEW_WIDTH, VIEW_HEIGHT)
+    ctx.drawImage(images['sky'], 0, 0, viewWidth, viewHeight)
   }
 
   pointerdown() {}

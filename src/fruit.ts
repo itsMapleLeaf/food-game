@@ -21,8 +21,8 @@ export default class Fruit {
   image = getRandomFruit()
   width = this.image.width
   height = this.image.height
-  x = util.randomRange(0, game.VIEW_WIDTH - this.width)
-  y = util.randomRange(0, game.VIEW_HEIGHT - this.height)
+  x = util.randomRange(0, game.viewWidth - this.width)
+  y = util.randomRange(0, game.viewHeight - this.height)
   xvel = 0
   yvel = 0
   isGood = false
@@ -41,13 +41,13 @@ export default class Fruit {
     if (this.xvel < 0 && this.x < 0) {
       this.xvel = Math.abs(this.xvel) * 1
     }
-    if (this.xvel > 0 && this.x + this.width > game.VIEW_WIDTH) {
+    if (this.xvel > 0 && this.x + this.width > game.viewWidth) {
       this.xvel = Math.abs(this.xvel) * -1
     }
     if (this.yvel < 0 && this.y < 0) {
       this.yvel = Math.abs(this.yvel) * 1
     }
-    if (this.yvel > 0 && this.y + this.width > game.VIEW_HEIGHT) {
+    if (this.yvel > 0 && this.y + this.width > game.viewHeight) {
       this.yvel = Math.abs(this.yvel) * -1
     }
   }
