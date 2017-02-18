@@ -1,5 +1,5 @@
 import Fruit from './fruit'
-import * as game from './game'
+import {GameState, VIEW_HEIGHT, VIEW_WIDTH} from './game'
 import {images} from './resources'
 import * as util from './util'
 
@@ -20,7 +20,7 @@ function drawOutlinedText(
   ctx.restore()
 }
 
-export default class Gameplay implements game.GameState {
+export default class Gameplay implements GameState {
   fruitTargetImage: HTMLImageElement
   fruits = [] as Fruit[]
   level = 0
@@ -75,7 +75,7 @@ export default class Gameplay implements game.GameState {
 
   drawBackground(ctx: CanvasRenderingContext2D) {
     ctx.save()
-    ctx.scale(game.VIEW_WIDTH / images['sky'].width, game.VIEW_HEIGHT / images['sky'].height)
+    ctx.scale(VIEW_WIDTH / images['sky'].width, VIEW_HEIGHT / images['sky'].height)
     ctx.drawImage(images['sky'], 0, 0)
     ctx.restore()
   }
@@ -89,7 +89,7 @@ export default class Gameplay implements game.GameState {
 
     let prefixText = 'Touch'
     let textWidth = ctx.measureText(prefixText).width
-    let textPosition = game.VIEW_WIDTH / 2 - textWidth / 2 - this.fruitTargetImage.width / 2
+    let textPosition = VIEW_WIDTH / 2 - textWidth / 2 - this.fruitTargetImage.width / 2
 
     drawOutlinedText(ctx, prefixText, textPosition, 50)
 
@@ -104,6 +104,6 @@ export default class Gameplay implements game.GameState {
     ctx.font = '50px Roboto'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    drawOutlinedText(ctx, `Score: ${this.score}`, game.VIEW_WIDTH / 2, game.VIEW_HEIGHT * 0.9)
+    drawOutlinedText(ctx, `Score: ${this.score}`, VIEW_WIDTH / 2, VIEW_HEIGHT * 0.9)
   }
 }
