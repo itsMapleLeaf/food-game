@@ -1,5 +1,5 @@
-import { GameState, viewHeight, viewWidth } from './game'
-import { images } from './resources'
+import {GameState, viewHeight, viewWidth} from './game'
+import {images} from './resources'
 
 export class GameOver implements GameState {
   enter() {}
