@@ -17,7 +17,7 @@ function getRandomFruit() {
   ])
 }
 
-export default class Fruit {
+export class Fruit {
   image = getRandomFruit()
   width = this.image.width
   height = this.image.height

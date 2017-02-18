@@ -1,11 +1,11 @@
-import Fruit from './fruit'
+import {Fruit} from './fruit'
 import {game, GameState, viewHeight, viewWidth} from './game'
 import {GameOver} from './game-over'
 import {drawOutlinedText} from './graphics'
 import {images} from './resources'
 import * as util from './util'
 
-export default class Gameplay implements GameState {
+export class Gameplay implements GameState {
   fruitTargetImage: HTMLImageElement
   fruits = [] as Fruit[]
   level = 0

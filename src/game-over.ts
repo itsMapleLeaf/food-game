@@ -1,5 +1,5 @@
 import {game, GameState, viewHeight, viewWidth} from './game'
-import Gameplay from './gameplay'
+import {Gameplay} from './gameplay'
 import {drawOutlinedText} from './graphics'
 import {images} from './resources'
 
