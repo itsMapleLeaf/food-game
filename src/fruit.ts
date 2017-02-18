@@ -4,7 +4,7 @@ import {randomItem, randomRange, randomSign} from './util/random'
 
 function getRandomFruit() {
   return randomItem([
-    images['apple'],
+    // images['apple'],
     images['banana'],
     images['cake'],
     images['cherry'],
