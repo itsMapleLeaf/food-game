@@ -34,8 +34,7 @@ export default class Gameplay implements GameState {
       this.score += 1
       this.startLevel(this.level + 1)
     } else {
-      this.score = 0
-      game.switchState(new GameOver())
+      game.switchState(new GameOver(this.score))
     }
   }
 

@@ -1,7 +1,7 @@
-export function drawOutlinedText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number) {
+export function drawOutlinedText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, outlineWidth = 5) {
   ctx.save()
 
-  ctx.lineWidth = 5
+  ctx.lineWidth = outlineWidth
   ctx.strokeStyle = 'black'
   ctx.strokeText(text, x, y)
 
