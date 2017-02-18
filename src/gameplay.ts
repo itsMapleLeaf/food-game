@@ -1,25 +1,9 @@
 import Fruit from './fruit'
 import { game, GameState, viewHeight, viewWidth } from './game'
 import { GameOver } from './game-over'
+import { drawOutlinedText } from './graphics'
 import { images } from './resources'
 import * as util from './util'
-
-function drawOutlinedText(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  x: number, y: number,
-) {
-  ctx.save()
-
-  ctx.lineWidth = 5
-  ctx.strokeStyle = 'black'
-  ctx.strokeText(text, x, y)
-
-  ctx.fillStyle = 'white'
-  ctx.fillText(text, x, y)
-
-  ctx.restore()
-}
 
 export default class Gameplay implements GameState {
   fruitTargetImage: HTMLImageElement
@@ -59,7 +43,7 @@ export default class Gameplay implements GameState {
     this.fruits = []
     this.level = level
 
-    for (let i = 0; i < level; i++) {
+    for (let i = 0 i < level i++) {
       this.fruits.push(new Fruit(0.8 + 0.8 * (1 / level), 100 + level * 20))
     }
 
