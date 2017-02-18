@@ -5,37 +5,35 @@ export const VIEW_WIDTH = 960
 export const VIEW_HEIGHT = 540
 
 export interface GameState {
-  init(): void
+  enter(): void
+  leave(): void
   update(dt: number): void
   draw(ctx: CanvasRenderingContext2D): void
   pointerdown(x: number, y: number): void
 }
 
-class Game {
+export class Game {
   state: GameState
 
   async start(state: GameState) {
-    this.state = state
-
     await resources.loadImages()
+
+    this.switchState(state)
 
     let canvas = document.createElement('canvas')
     canvas.width = VIEW_WIDTH
     canvas.height = VIEW_HEIGHT
     document.body.appendChild(canvas)
 
-    let ctx = canvas.getContext('2d')
-    let time = Date.now()
-
-    canvas.addEventListener('pointerdown', (event: PointerEvent) => {
+    canvas.addEventListener('pointerdown', event => {
       let {width, height} = canvas.getBoundingClientRect()
       let x = event.offsetX / width * VIEW_WIDTH
       let y = event.offsetY / height * VIEW_HEIGHT
       this.state.pointerdown(x, y)
     })
 
-    this.state.init()
-
+    let time = Date.now()
+    let ctx = canvas.getContext('2d')
     while (true) {
       await util.animationFrame()
 
@@ -47,6 +45,12 @@ class Game {
       this.state.draw(ctx)
     }
   }
+
+  switchState(state: GameState) {
+    if (this.state) this.state.leave()
+    this.state = state
+    if (this.state) this.state.enter()
+  }
 }
 
-export default new Game()
+export const game = new Game()

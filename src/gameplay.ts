@@ -1,6 +1,7 @@
 import Fruit from './fruit'
-import {GameState, VIEW_HEIGHT, VIEW_WIDTH} from './game'
-import {images} from './resources'
+import { game, GameState, VIEW_HEIGHT, VIEW_WIDTH } from './game'
+import { GameOver } from './game-over'
+import { images } from './resources'
 import * as util from './util'
 
 function drawOutlinedText(
@@ -27,10 +28,12 @@ export default class Gameplay implements GameState {
   score = 0
   targetBlinkTime = 0
 
-  init() {
+  enter() {
     this.targetBlinkTime = 0.8
     this.startLevel(this.level + 1)
   }
+
+  leave() {}
 
   update(dt: number) {
     if (dt > 0.5) return
@@ -48,7 +51,7 @@ export default class Gameplay implements GameState {
       this.startLevel(this.level + 1)
     } else {
       this.score = 0
-      this.startLevel(1)
+      game.switchState(new GameOver())
     }
   }
 
@@ -74,10 +77,7 @@ export default class Gameplay implements GameState {
   }
 
   drawBackground(ctx: CanvasRenderingContext2D) {
-    ctx.save()
-    ctx.scale(VIEW_WIDTH / images['sky'].width, VIEW_HEIGHT / images['sky'].height)
-    ctx.drawImage(images['sky'], 0, 0)
-    ctx.restore()
+    ctx.drawImage(images['sky'], 0, 0, VIEW_WIDTH, VIEW_HEIGHT)
   }
 
   drawFruitTarget(ctx: CanvasRenderingContext2D) {
