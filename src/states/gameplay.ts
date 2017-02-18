@@ -1,9 +1,9 @@
-import {Fruit} from './fruit'
-import {game, GameState, viewHeight, viewWidth} from './game'
+import {Fruit} from '../fruit'
+import {game, GameState, viewHeight, viewWidth} from '../game'
+import {images} from '../resources'
+import {drawOutlinedText} from '../util/graphics'
+import {randomItem} from '../util/random'
 import {GameOver} from './game-over'
-import {images} from './resources'
-import {drawOutlinedText} from './util/graphics'
-import {randomItem} from './util/random'
 
 export class Gameplay implements GameState {
   fruitTargetImage: HTMLImageElement
