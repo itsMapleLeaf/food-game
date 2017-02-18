@@ -18,14 +18,17 @@ function getRandomFruit() {
 }
 
 export class Fruit {
-  image = getRandomFruit()
-  width = this.image.width
-  height = this.image.height
-  x = randomRange(0, game.viewWidth - this.width)
-  y = randomRange(0, game.viewHeight - this.height)
-  xvel = 0
-  yvel = 0
-  isGood = false
+  public isGood = false
+  public blinking = false
+  public image = getRandomFruit()
+  public width = this.image.width
+  public height = this.image.height
+  public x = randomRange(0, game.viewWidth - this.width)
+  public y = randomRange(0, game.viewHeight - this.height)
+
+  private xvel = 0
+  private yvel = 0
+  private blinkTime = 0
 
   constructor(size: number, speed: number) {
     this.width *= size
@@ -52,7 +55,12 @@ export class Fruit {
     }
   }
 
+  updateBlink(dt: number) {
+    this.blinkTime += dt
+  }
+
   draw(ctx: CanvasRenderingContext2D) {
+    if (this.blinking && Math.floor(this.blinkTime * 10) % 2 === 0) return
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
   }
 }

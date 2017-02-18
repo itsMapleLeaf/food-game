@@ -6,11 +6,12 @@ import {randomItem} from '../util/random'
 import {GameOver} from './game-over'
 
 export class Gameplay implements GameState {
-  fruitTargetImage: HTMLImageElement
-  fruits = [] as Fruit[]
-  level = 0
-  score = 0
-  targetBlinkTime = 0
+  private fruitTargetImage: HTMLImageElement
+  private fruits = [] as Fruit[]
+  private level = 0
+  private score = 0
+  private targetBlinkTime = 0
+  private frozen = false
 
   enter() {
     this.targetBlinkTime = 0.8
@@ -21,6 +22,8 @@ export class Gameplay implements GameState {
 
   update(dt: number) {
     if (dt > 0.5) return
+    this.fruits.forEach(fruit => fruit.updateBlink(dt))
+    if (this.frozen) return
     this.fruits.forEach(fruit => fruit.update(dt))
     this.targetBlinkTime -= dt
   }
@@ -34,7 +37,9 @@ export class Gameplay implements GameState {
       this.score += 1
       this.startLevel(this.level + 1)
     } else {
-      game.switchState(new GameOver(this.score))
+      this.frozen = true
+      tapped[0].blinking = true
+      window.setTimeout(() => game.switchState(new GameOver(this.score)), 1500)
     }
   }
 
