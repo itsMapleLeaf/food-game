@@ -33,10 +33,10 @@ export class Gameplay implements GameState {
       fruit.x < x && x < fruit.x + fruit.width &&
       fruit.y < y && y < fruit.y + fruit.height)
 
-    if (tapped.some(fruit => fruit.isGood)) {
+    if (tapped.some(fruit => fruit.image === this.fruitTargetImage)) {
       this.score += 1
       this.startLevel(this.level + 1)
-    } else {
+    } else if (tapped.length > 0) {
       this.frozen = true
       tapped[0].blinking = true
       window.setTimeout(() => game.switchState(new GameOver(this.score)), 1500)
@@ -46,15 +46,10 @@ export class Gameplay implements GameState {
   startLevel(level: number) {
     this.fruits = []
     this.level = level
-
     for (let i = 0; i < level; i++) {
       this.fruits.push(new Fruit(0.8 + 0.8 * (1 / level), 100 + level * 20))
     }
-
     this.fruitTargetImage = randomItem(this.fruits).image
-    this.fruits
-      .filter(fruit => fruit.image === this.fruitTargetImage)
-      .forEach(fruit => fruit.isGood = true)
   }
 
   draw(ctx: CanvasRenderingContext2D) {

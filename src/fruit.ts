@@ -18,7 +18,6 @@ function getRandomFruit() {
 }
 
 export class Fruit {
-  public isGood = false
   public blinking = false
   public image = getRandomFruit()
   public width = this.image.width
