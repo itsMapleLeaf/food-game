@@ -49,7 +49,7 @@ export class Game {
   switchState(state: GameState) {
     if (this.state) this.state.leave()
     this.state = state
-    if (this.state) this.state.enter()
+    this.state.enter()
   }
 }
 
