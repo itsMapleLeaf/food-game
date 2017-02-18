@@ -1,7 +1,7 @@
-import {game, GameState, viewHeight, viewWidth} from './game'
+import {game, GameState, viewHeight, viewWidth} from '../game'
+import {images} from '../resources'
+import {drawOutlinedText} from '../util/graphics'
 import {Gameplay} from './gameplay'
-import {images} from './resources'
-import {drawOutlinedText} from './util/graphics'
 
 export class GameOver implements GameState {
   constructor(private score: number) {}
