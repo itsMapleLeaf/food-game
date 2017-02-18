@@ -1,9 +1,9 @@
 import {Fruit} from './fruit'
 import {game, GameState, viewHeight, viewWidth} from './game'
 import {GameOver} from './game-over'
-import {drawOutlinedText} from './graphics'
 import {images} from './resources'
-import * as util from './util'
+import {drawOutlinedText} from './util/graphics'
+import {randomItem} from './util/random'
 
 export class Gameplay implements GameState {
   fruitTargetImage: HTMLImageElement
@@ -46,7 +46,7 @@ export class Gameplay implements GameState {
       this.fruits.push(new Fruit(0.8 + 0.8 * (1 / level), 100 + level * 20))
     }
 
-    this.fruitTargetImage = util.randomItem(this.fruits).image
+    this.fruitTargetImage = randomItem(this.fruits).image
     this.fruits
       .filter(fruit => fruit.image === this.fruitTargetImage)
       .forEach(fruit => fruit.isGood = true)

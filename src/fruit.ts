@@ -1,9 +1,9 @@
 import * as game from './game'
 import {images} from './resources'
-import * as util from './util'
+import {randomItem, randomRange, randomSign} from './util/random'
 
 function getRandomFruit() {
-  return util.randomItem([
+  return randomItem([
     images['apple'],
     images['banana'],
     images['cake'],
@@ -21,8 +21,8 @@ export class Fruit {
   image = getRandomFruit()
   width = this.image.width
   height = this.image.height
-  x = util.randomRange(0, game.viewWidth - this.width)
-  y = util.randomRange(0, game.viewHeight - this.height)
+  x = randomRange(0, game.viewWidth - this.width)
+  y = randomRange(0, game.viewHeight - this.height)
   xvel = 0
   yvel = 0
   isGood = false
@@ -30,8 +30,8 @@ export class Fruit {
   constructor(size: number, speed: number) {
     this.width *= size
     this.height *= size
-    this.xvel = speed * util.randomSign()
-    this.yvel = speed * util.randomSign()
+    this.xvel = speed * randomSign()
+    this.yvel = speed * randomSign()
   }
 
   update(dt: number) {

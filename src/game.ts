@@ -1,5 +1,5 @@
 import * as resources from './resources'
-import * as util from './util'
+import {animationFrame} from './util/graphics'
 
 export const viewWidth = 960
 export const viewHeight = 540
@@ -35,7 +35,7 @@ export class Game {
     let time = Date.now()
     let ctx = canvas.getContext('2d')
     while (true) {
-      await util.animationFrame()
+      await animationFrame()
 
       let now = Date.now()
       let elapsed = now - time
@@ -53,4 +53,4 @@ export class Game {
   }
 }
 
-export const game = new Game()
+export let game = new Game()

@@ -1,16 +1,9 @@
+import {loadImage} from './util/graphics'
+
 export let images = {} as { [name: string]: HTMLImageElement }
 
-export function loadImage(src: string) {
-  return new Promise<HTMLImageElement>((resolve, reject) => {
-    let image = new Image()
-    image.src = src
-    image.onload = event => resolve(image)
-    image.onerror = event => reject(event.error)
-  })
-}
-
-// this is lazy as hell don't do this
 export async function loadImages() {
+  // this is lazy as hell don't do this
   images['sky'] = await loadImage(require('../assets/images/sky.png'))
 
   images['apple'] = await loadImage(require('../assets/images/apple.png'))
