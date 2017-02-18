@@ -11,7 +11,7 @@ export interface GameState {
   pointerdown(x: number, y: number): void
 }
 
-export default class Game {
+class Game {
   state: GameState
 
   async start(state: GameState) {
@@ -48,3 +48,5 @@ export default class Game {
     }
   }
 }
+
+export default new Game()
